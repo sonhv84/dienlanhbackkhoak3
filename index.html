@@ -3,230 +3,327 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sơn Điện Lạnh - Sửa Chữa, Vệ Sinh, Lắp Đặt Điều Hòa TP.HCM</title>
+  <title>BK Sơn Điện Lạnh - Sửa chữa Điện lạnh Uy Tín</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="icon" href="/favicon.jpg">
+
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f8f9fa; color:#333; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+      transition: box-shadow 0.3s;
+    }
+
+    header.scrolled { box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
 
     .navbar {
-      position: fixed; top:0; left:0; width:100%;
-      background:white; box-shadow:0 2px 10px rgba(0,0,0,0.1);
-      z-index:1000; transition:all 0.3s ease;
-    }
-    .navbar.scrolled { background:rgba(255,255,255,0.98); box-shadow:0 4px 20px rgba(0,0,0,0.15); backdrop-filter:blur(8px); }
-
-    .nav-container {
-      max-width:1200px; margin:0 auto; padding:0 20px;
-      display:flex; justify-content:space-between; align-items:center; height:80px;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 30px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .logo {
-      font-size:1.7rem; font-weight:bold; color:#0D6EFD;
-      display:flex; align-items:center; gap:10px;
-    }
-    .logo-icon {
-      width:45px; height:45px; background:#0D6EFD; color:white;
-      border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+      display: flex;
+      align-items: center;
     }
 
-    .nav-menu {
-      display:flex; align-items:center; gap:28px;
+    .logo a {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .nav-item { position:relative; }
-    .nav-link {
-      color:#333; text-decoration:none; font-weight:500; font-size:1.05rem;
-      padding:10px 0; display:block; transition:color 0.3s;
+    .logo-img {
+      height: 70px;          /* Điều chỉnh chiều cao logo theo ý bạn */
+      width: auto;
+      max-width: 180px;
     }
-    .nav-link:hover, .nav-link.active { color:#0D6EFD; }
 
-    /* Dropdown */
+    .logo-text {
+      font-size: 28px;
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    .logo-text .bk { color: #0066cc; font-size: 34px; }
+
+    .nav-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      gap: 45px;
+    }
+
+    .nav-center a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .nav-center a:hover,
+    .nav-center a.active { color: #0066cc; }
+
     .dropdown {
-      position:absolute; top:100%; left:0; background:white;
-      min-width:240px; box-shadow:0 8px 25px rgba(0,0,0,0.15);
-      border-radius:8px; overflow:hidden; opacity:0; visibility:hidden;
-      transform:translateY(10px); transition:all 0.3s ease; z-index:10;
-    }
-    .nav-item:hover .dropdown { opacity:1; visibility:visible; transform:translateY(0); }
-
-    .dropdown a {
-      display:block; padding:12px 20px; color:#333; text-decoration:none;
-      transition:background 0.2s, color 0.2s;
-    }
-    .dropdown a:hover { background:#0D6EFD; color:white; }
-
-    /* Header extra: badge + buttons */
-    .header-extra {
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-    }
-    .location-badge {
-      font-size:0.9rem; color:#0D6EFD; font-weight:600;
-      background:#e6f0ff; padding:6px 14px; border-radius:20px;
-    }
-    .chat-btn {
-      padding:8px 14px; border-radius:50px; color:white; font-weight:500;
-      text-decoration:none; display:flex; align-items:center; gap:6px;
-      transition:all 0.3s;
-    }
-    .chat-btn:hover { transform:scale(1.05); }
-    .zalo-btn { background:#00B14F; }
-    .mess-btn { background:#0084FF; }
-    .cta-btn {
-      background:#FF6B00; color:white; padding:10px 20px;
-      border-radius:50px; font-weight:bold; box-shadow:0 4px 15px rgba(255,107,0,0.3);
-      transition:all 0.3s; display:flex; align-items:center; gap:8px;
-    }
-    .cta-btn:hover { background:#e55f00; transform:translateY(-2px); box-shadow:0 8px 25px rgba(255,107,0,0.4); }
-    .urgency { font-size:0.85rem; opacity:0.9; }
-
-    /* Hamburger */
-    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
-    .hamburger span { width:28px; height:3px; background:#333; border-radius:3px; transition:all 0.3s; }
-    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.active span:nth-child(2) { opacity:0; }
-    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(7px,-7px); }
-
-    .mobile-menu {
-      position:fixed; top:80px; left:0; width:100%; background:white;
-      flex-direction:column; align-items:center; gap:20px; padding:30px 0;
-      display:none; box-shadow:0 10px 20px rgba(0,0,0,0.1);
-    }
-    .mobile-menu.active { display:flex; }
-
-    /* Mobile bottom bar */
-    .mobile-bottom-bar {
-      position:fixed; bottom:0; left:0; width:100%; background:white;
-      box-shadow:0 -3px 15px rgba(0,0,0,0.15); display:none;
-      justify-content:space-around; padding:10px 0; z-index:999;
-    }
-    .bottom-btn {
-      display:flex; flex-direction:column; align-items:center; color:#333;
-      text-decoration:none; font-size:0.8rem; gap:4px;
-    }
-    .bottom-btn span { font-size:1.8rem; }
-
-    @media (max-width:768px) {
-      .nav-menu, .header-extra { display:none; }
-      .hamburger { display:flex; }
-      .mobile-bottom-bar { display:flex; }
+      position: relative;
     }
 
-    .hero { height:100vh; background:linear-gradient(to bottom, #e6f0ff, #ffffff);
-      display:flex; align-items:center; justify-content:center; font-size:2.5rem;
-      color:#0D6EFD; text-align:center; padding:0 20px; margin-top:80px; }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      border-radius: 8px;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content { display: block; }
+
+    .dropdown-content a {
+      padding: 12px 20px;
+      display: block;
+      color: #333;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f7ff;
+      color: #0066cc;
+    }
+
+    .search-right {
+      position: relative;
+      width: 260px;
+    }
+
+    .search-right input {
+      width: 100%;
+      padding: 11px 45px 11px 18px;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s;
+      color: #333;
+    }
+
+    .search-right input:focus {
+      border-color: #0066cc;
+      box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+    }
+
+    .search-right input::placeholder {
+      color: #aaa;
+      opacity: 1;
+    }
+
+    .search-right button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #0066cc;
+      cursor: pointer;
+    }
+
+    .hamburger { display: none; font-size: 28px; color: #333; cursor: pointer; }
+
+    /* Mobile responsive */
+    @media (max-width: 992px) {
+      .navbar { padding: 0 20px; }
+
+      .logo-img { height: 45px; } /* Logo nhỏ hơn trên mobile */
+
+      .nav-center {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: white;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 0;
+        overflow: hidden;
+        transition: height 0.4s ease;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      }
+
+      .nav-center.active {
+        height: auto;
+        padding: 30px 20px;
+      }
+
+      .nav-center a { margin: 15px 0; text-align: center; font-size: 18px; }
+
+      .search-right {
+        width: 100%;
+        margin: 20px 0;
+      }
+
+      .hamburger { display: block; }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background: #f8f9fa;
+      }
+
+      .dropdown:hover .dropdown-content { display: none; }
+
+      .dropdown.active .dropdown-content { display: block; }
+    }
   </style>
 </head>
 <body>
 
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <div class="logo-icon">BK</div>
-        Sơn Điện Lạnh
-      </div>
-
-      <div class="nav-menu">
-        <a href="#" class="nav-link active">Trang chủ</a>
-
-        <div class="nav-item">
-          <a href="#" class="nav-link">Dịch vụ ▼</a>
-          <div class="dropdown">
-            <a href="#">Vệ sinh điều hòa</a>
-            <a href="#">Sửa chữa điều hòa</a>
-            <a href="#">Lắp đặt điều hòa</a>
-            <a href="#">Bảo dưỡng định kỳ</a>
-            <a href="#">Sửa chữa tủ lạnh / máy giặt</a>
-          </div>
-        </div>
-
-        <a href="#" class="nav-link">Bảng giá</a>
-
-        <div class="nav-item">
-          <a href="#" class="nav-link">Hướng dẫn ▼</a>
-          <div class="dropdown">
-            <a href="#">Cách vệ sinh điều hòa tại nhà</a>
-            <a href="#">Dấu hiệu hỏng & khắc phục</a>
-            <a href="#">Chọn công suất phù hợp</a>
-            <a href="#">Bảo dưỡng mùa mưa</a>
-            <a href="#">Mẹo tiết kiệm điện</a>
-          </div>
-        </div>
-
-        <a href="#" class="nav-link">Liên hệ</a>
-      </div>
-
-      <div class="header-extra">
-        <div class="location-badge">Phục vụ TP.HCM & các quận</div>
-
-        <a href="https://zalo.me/0375485555" target="_blank" class="chat-btn zalo-btn">
-          <span>💬</span> Zalo
-        </a>
-
-        <a href="https://m.me/yourpage" target="_blank" class="chat-btn mess-btn"> <!-- Thay yourpage bằng FB page thật -->
-          <span>💬</span> Messenger
-        </a>
-
-        <a href="tel:0375485555" class="cta-btn">
-          <span>📞</span> Gọi ngay
-          <span class="urgency">Có mặt 30 phút - 24/7</span>
-        </a>
-      </div>
-
-      <div class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-      </div>
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/">
+        <!-- Logo hình ảnh chính (thay src bằng link logo thật của bạn) -->
+        <img src="logo.jpg" 
+             alt="BK Sơn Điện Lạnh" class="logo-img">
+        <!-- Text dự phòng nếu ảnh không load (có thể xóa nếu chỉ dùng logo hình) -->
+        <!-- <span class="logo-text"><span class="bk">BK</span> Sơn Điện Lạnh</span> -->
+      </a>
     </div>
 
-    <!-- Mobile menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <!-- Giống desktop, nhưng thêm badge & buttons nếu cần -->
-      <a href="#" class="nav-link">Trang chủ</a>
-      <!-- ... dropdown mobile như code cũ ... -->
-      <a href="tel:0375485555" class="cta-btn">📞 Gọi ngay</a>
-      <a href="https://zalo.me/0375485555" class="chat-btn zalo-btn">💬 Zalo</a>
-      <a href="https://m.me/yourpage" class="chat-btn mess-btn">💬 Messenger</a>
+    <div class="nav-center" id="navCenter">
+      <a href="/" class="active">Trang chủ</a>
+
+      <div class="dropdown">
+        <a href="#">Dịch vụ ▼</a>
+        <div class="dropdown-content">
+          <a href="#">Sửa điều hòa</a>
+          <a href="#">Bảo dưỡng máy lạnh</a>
+          <a href="#">Lắp đặt điều hòa</a>
+          <a href="#">Sửa tủ lạnh</a>
+        </div>
+      </div>
+
+      <a href="#">Bảng giá</a>
+
+      <a href="/tin-tuc">Tin tức</a>
+
+      <div class="dropdown">
+        <a href="#">Hướng dẫn ▼</a>
+        <div class="dropdown-content">
+          <a href="#">Vệ sinh điều hòa</a>
+          <a href="#">Dấu hiệu hỏng máy lạnh</a>
+          <a href="#">Bảo dưỡng định kỳ</a>
+        </div>
+      </div>
+
+      <a href="#">Liên hệ</a>
+    </div>
+
+    <div class="search-right">
+      <input type="text" id="searchInput" placeholder="">
+      <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="hamburger" id="hamburger">
+      <i class="fas fa-bars"></i>
     </div>
   </nav>
+</header>
 
-  <!-- Sticky bottom bar mobile -->
-  <div class="mobile-bottom-bar">
-    <a href="https://zalo.me/0375485555" class="bottom-btn" target="_blank">
-      <span>💬</span> Zalo
-    </a>
-    <a href="tel:0375485555" class="bottom-btn">
-      <span>📞</span> Gọi
-    </a>
-    <a href="https://m.me/yourpage" class="bottom-btn" target="_blank">
-      <span>💬</span> Messenger
-    </a>
-  </div>
+<script>
+  // Hamburger menu và các chức năng cũ
+  const hamburger = document.getElementById('hamburger');
+  const navCenter = document.getElementById('navCenter');
 
-  <div class="hero">
-    Sơn Điện Lạnh - Dịch vụ chuyên nghiệp tại TP.HCM<br>
-    Vệ sinh, sửa chữa, lắp đặt điều hòa nhanh chóng 24/7
-  </div>
+  hamburger.addEventListener('click', () => {
+    navCenter.classList.toggle('active');
+  });
 
-  <script>
-    // Sticky + shadow
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  document.querySelectorAll('.nav-center a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 992) {
+        navCenter.classList.remove('active');
+      }
     });
+  });
 
-    // Hamburger
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      mobileMenu.classList.toggle('active');
+  document.querySelectorAll('.dropdown').forEach(drop => {
+    drop.addEventListener('click', (e) => {
+      if (window.innerWidth <= 992) {
+        e.stopPropagation();
+        drop.classList.toggle('active');
+      }
     });
+  });
 
-    // Đóng menu khi click link
-    document.querySelectorAll('.mobile-menu a').forEach(el => {
-      el.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        mobileMenu.classList.remove('active');
-      });
-    });
-  </script>
+  window.addEventListener('scroll', () => {
+    document.querySelector('header').classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Typing animation - chỉ chạy một lần
+  const searchInput = document.getElementById('searchInput');
+  const placeholders = [
+    "Tìm kiếm dịch vụ... (máy lạnh, tủ lạnh...)",
+    "Sửa điều hòa nhanh chóng tại nhà",
+    "Bảo dưỡng máy lạnh định kỳ",
+    "Lắp đặt điều hòa mới 2025",
+    "Sửa tủ lạnh không lạnh, kêu to..."
+  ];
+
+  let currentIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const typeSpeed = 80;
+  const deleteSpeed = 40;
+  const pauseAfterType = 1800;
+
+  function typePlaceholder() {
+    const currentText = placeholders[currentIndex];
+
+    if (!isDeleting && charIndex <= currentText.length) {
+      searchInput.placeholder = currentText.substring(0, charIndex);
+      charIndex++;
+      setTimeout(typePlaceholder, typeSpeed);
+    } 
+    else if (isDeleting && charIndex > 0) {
+      searchInput.placeholder = currentText.substring(0, charIndex);
+      charIndex--;
+      setTimeout(typePlaceholder, deleteSpeed);
+    } 
+    else if (!isDeleting && charIndex > currentText.length) {
+      if (currentIndex === placeholders.length - 1) {
+        searchInput.placeholder = currentText;
+        return; // Dừng hẳn sau câu cuối
+      }
+      isDeleting = true;
+      setTimeout(typePlaceholder, pauseAfterType);
+    } 
+    else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      currentIndex++;
+      setTimeout(typePlaceholder, 400);
+    }
+  }
+
+  typePlaceholder();
+</script>
+
 </body>
 </html>

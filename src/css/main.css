@@ -1,2 +1,80 @@
-/* base */
-@import './base/icon.css';
+/* src/css/main.css */
+@import "./base/font.css";
+@import "./base/icon.css";
+
+:root {
+    /* Màu sắc chủ đạo cho dự án Vệ binh số */
+    --primary-color: #1a73e8; /* Xanh công nghệ */
+    --secondary-color: #34a853; /* Xanh lá an toàn */
+    --error-color: #d93025; /* Đỏ cảnh báo lừa đảo */
+    --bg-color: #ffffff;
+    --text-main: #202124;
+    --text-muted: #5f6368;
+    
+    /* Font chữ */
+    --font-main: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Giúp kiểm soát kích thước box chính xác hơn */
+}
+
+html {
+    scroll-behavior: smooth; /* Tạo hiệu ứng cuộn mượt mà */
+    font-size: 16px; /* Kích thước chuẩn */
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    line-height: 1.6;
+    overflow-x: hidden; /* Tránh vỡ giao diện trên di động */
+}
+
+h1, h2, h3, h4 {
+    color: var(--primary-color);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 2.5rem; font-weight: 900; } /* Đặc biệt đậm cho tiêu đề chính */
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: 0.3s;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Flexbox helper để chia cột nhanh */
+.flex-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Xử lý chuyên sâu cho phần Section */
+section {
+    padding: 60px 0;
+}
