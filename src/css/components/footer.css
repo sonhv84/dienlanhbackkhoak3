@@ -1,0 +1,39 @@
+footer {
+    background: var(--footer-bg);
+    color: #fff;
+    padding-top: 50px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+    padding: 0 20px 40px;
+}
+
+.footer-col h3 {
+    color: var(--accent-cyan);
+    margin-bottom: 15px;
+}
+
+.footer-col a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-hotline {
+    background: var(--accent-yellow);
+    padding: 10px 15px;
+    display: inline-block;
+    margin-top: 10px;
+    color: #000;
+    font-weight: bold;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0,0,0,.2);
+}
